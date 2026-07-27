@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="An educational HAM10000 skin-lesion classification project using EfficientNetB0 and TensorFlow."
+>
+
+<title>HAM10000 Skin Lesion Classifier</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">
+                Computer Vision · TensorFlow · Medical Imaging
+            </p>
+
+        <h1>HAM10000 Skin Lesion Image Classifier</h1>
+
+        <p class="subtitle">
+            An educational deep-learning project exploring EfficientNetB0,
+            lesion-level dataset splitting, class imbalance, model
+            evaluation, and high-confidence error analysis.
+        </p>
+
+        <div class="hero-buttons">
+            <a
+                class="button primary-button"
+                href="https://github.com/shashankpadala43267/HAM10000-Skin-Lesion-Classifier"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View GitHub Repository
+            </a>
+
+            <a
+                class="button secondary-button"
+                href="#results"
+            >
+                View Results
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section>
+        <p class="section-label">Overview</p>
+        <h2>Project Overview</h2>
+
+        <p>
+            This project applies EfficientNetB0 transfer learning to
+            dermoscopic images from the HAM10000 dataset. The model predicts
+            seven skin-lesion categories.
+        </p>
+
+        <p>
+            The complete workflow includes metadata exploration, image-path
+            mapping, lesion-level dataset splitting, TensorFlow data
+            pipelines, image augmentation, class balancing, training,
+            evaluation, confusion-matrix analysis, and examination of
+            high-confidence mistakes.
+        </p>
+    </section>
+
+    <section>
+        <p class="section-label">Data</p>
+        <h2>Dataset Split</h2>
+
+        <div class="cards">
+            <article class="card">
+                <strong>7,002</strong>
+                <span>Training images</span>
+            </article>
+
+            <article class="card">
+                <strong>1,519</strong>
+                <span>Validation images</span>
+            </article>
+
+            <article class="card">
+                <strong>1,494</strong>
+                <span>Testing images</span>
+            </article>
+        </div>
+    </section>
+
+    <section id="results">
+        <p class="section-label">Evaluation</p>
+        <h2>Model Results</h2>
+
+        <div class="cards">
+            <article class="card">
+                <strong>41.70%</strong>
+                <span>Test accuracy</span>
+            </article>
+
+            <article class="card">
+                <strong>59.20%</strong>
+                <span>Balanced accuracy</span>
+            </article>
+
+            <article class="card">
+                <strong>33.52%</strong>
+                <span>Macro F1 score</span>
+            </article>
+        </div>
+
+        <p class="notice">
+            These results show the difficulty of imbalanced multiclass
+            medical-image classification. They do not represent clinically
+            validated performance.
+        </p>
+    </section>
+
+    <section>
+        <p class="section-label">Training</p>
+        <h2>Training and Validation Accuracy</h2>
+
+        <img
+            src="assets/accuracy_graph.png"
+            alt="Training and validation accuracy graph"
+        >
+    </section>
+
+    <section>
+        <p class="section-label">Evaluation</p>
+        <h2>Confusion Matrix</h2>
+
+        <img
+            src="assets/confusion_matrix.png"
+            alt="HAM10000 confusion matrix"
+        >
+    </section>
+
+    <section>
+        <p class="section-label">Error analysis</p>
+        <h2>High-Confidence Incorrect Predictions</h2>
+
+        <img
+            src="assets/high_confidence_mistakes.jpeg"
+            alt="High-confidence incorrect predictions"
+        >
+
+        <p>
+            These examples show predictions where the model assigned high
+            confidence to an incorrect class. Studying these errors helps
+            identify weaknesses and possible areas for improvement.
+        </p>
+    </section>
+
+    <section>
+        <p class="section-label">Methods</p>
+        <h2>Tools and Techniques</h2>
+
+        <div class="tags">
+            <span>EfficientNetB0</span>
+            <span>TensorFlow</span>
+            <span>Keras</span>
+            <span>Transfer learning</span>
+            <span>Lesion-level splitting</span>
+            <span>Class balancing</span>
+            <span>Error analysis</span>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">Limitations</p>
+        <h2>Important Limitations</h2>
+
+        <ul>
+            <li>The HAM10000 dataset is highly imbalanced.</li>
+            <li>Performance varies substantially among lesion classes.</li>
+            <li>The model produced high-confidence incorrect predictions.</li>
+            <li>Results may not generalize beyond HAM10000.</li>
+            <li>The model does not use patient history or clinical context.</li>
+            <li>The model has not been clinically validated.</li>
+        </ul>
+    </section>
+
+    <section class="disclaimer">
+        <p class="section-label">Safety</p>
+        <h2>Educational Disclaimer</h2>
+
+        <p>
+            This project is an educational machine-learning experiment.
+            It does not provide medical advice, diagnosis, screening,
+            treatment recommendations, or emergency guidance.
+        </p>
+    </section>
+
+    <section>
+        <p class="section-label">Creator</p>
+        <h2>About the Author</h2>
+
+        <p>
+            Created by <strong>Shashank Padala</strong>, a high-school
+            student interested in artificial intelligence, computer vision,
+            biomedical engineering, medicine, and software engineering.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>HAM10000 Skin Lesion Image Classifier</p>
+    <p>Created by Shashank Padala</p>
+</footer>
+</body>
+</html>
