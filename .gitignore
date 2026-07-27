@@ -1,0 +1,15 @@
+kaggle.json
+.env
+*.key
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+.DS_Store
+Thumbs.db
+
+data/
+dataset/
+HAM10000_images_part_1/
+HAM10000_images_part_2/
