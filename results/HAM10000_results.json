@@ -1,0 +1,13 @@
+{
+    "dataset": "HAM10000",
+    "model": "EfficientNetB0",
+    "number_of_classes": 7,
+    "training_images": 7002,
+    "validation_images": 1519,
+    "testing_images": 1494,
+    "accuracy": 0.4170013386880857,
+    "balanced_accuracy": 0.5919798964338912,
+    "macro_f1": 0.33523093637529877,
+    "macro_recall": 0.5919798964338912,
+    "disclaimer": "Educational machine-learning research only. Not a medical diagnostic system."
+}
