@@ -26,6 +26,7 @@
             <div class="nav-links">
                 <a href="#overview">Overview</a>
                 <a href="#results">Results</a>
+                <a href="#training">Training</a>
                 <a href="#methods">Methods</a>
                 <a href="#limitations">Limitations</a>
             </div>
@@ -33,7 +34,7 @@
     </nav>
 
     <header class="hero">
-        <div class="container hero-content">
+        <div class="container">
             <p class="eyebrow">
                 Computer Vision · TensorFlow · Medical Imaging
             </p>
@@ -42,8 +43,9 @@
 
             <p class="subtitle">
                 An educational deep-learning project using EfficientNetB0
-                to study seven-class skin-lesion classification, dataset
-                imbalance, transfer learning, and model error analysis.
+                to classify seven skin-lesion categories while studying
+                class imbalance, data leakage, transfer learning, and
+                model errors.
             </p>
 
             <div class="hero-tags">
@@ -89,16 +91,17 @@
             </p>
 
             <p>
-                The workflow includes metadata exploration, image-path
-                mapping, lesion-grouped dataset splitting, TensorFlow data
-                pipelines, image augmentation, class balancing, two-stage
-                training, evaluation, and high-confidence error analysis.
+                The workflow includes metadata validation, image-path
+                mapping, lesion-grouped splitting, TensorFlow data pipelines,
+                augmentation, class weighting, initial training, fine-tuning,
+                evaluation, and error analysis.
             </p>
 
-            <div class="highlight-box">
+            <div class="highlight">
                 <strong>Research focus:</strong>
-                Building and evaluating an imbalanced medical-image
-                classifier while preventing lesion-level data leakage.
+                evaluating an imbalanced medical-image classifier while
+                preventing images of the same lesion from appearing in
+                multiple dataset splits.
             </div>
         </section>
 
@@ -107,9 +110,8 @@
             <h2>Dataset Split</h2>
 
             <p class="section-intro">
-                Images were divided into training, validation, and testing
-                groups using lesion IDs to prevent the same lesion from
-                appearing in multiple splits.
+                The images were split by lesion ID to reduce data leakage
+                between training, validation, and testing.
             </p>
 
             <div class="cards">
@@ -132,99 +134,130 @@
 
         <section id="results">
             <p class="section-label">Evaluation</p>
-            <h2>Model Results</h2>
+            <h2>Final Model Results</h2>
 
-            <div class="cards">
+            <div class="results-grid">
                 <article class="card result-card">
-                    <strong>41.70%</strong>
+                    <strong>UPDATE</strong>
                     <span>Test accuracy</span>
                 </article>
 
                 <article class="card result-card">
-                    <strong>59.20%</strong>
+                    <strong>UPDATE</strong>
                     <span>Balanced accuracy</span>
                 </article>
 
                 <article class="card result-card">
-                    <strong>33.52%</strong>
-                    <span>Macro F1 score</span>
+                    <strong>UPDATE</strong>
+                    <span>Macro F1</span>
+                </article>
+
+                <article class="card result-card">
+                    <strong>UPDATE</strong>
+                    <span>Macro ROC-AUC</span>
                 </article>
             </div>
 
             <p class="notice">
                 These results demonstrate the difficulty of imbalanced,
-                multiclass medical-image classification. They do not represent
-                clinically validated performance.
+                multiclass medical-image classification. They do not
+                represent clinically validated performance.
             </p>
         </section>
 
-        <section>
+        <section id="training">
             <p class="section-label">Training</p>
-            <h2>Initial Training Accuracy</h2>
+            <h2>Initial Training</h2>
 
-            <figure>
-                <img
-                    src="../figures/initial_accuracy.png"
-                    alt="Initial training and validation accuracy graph"
-                    loading="lazy"
-                >
+            <div class="image-grid">
+                <figure>
+                    <img
+                        src="assets/initial_accuracy.png"
+                        alt="Initial training and validation accuracy graph"
+                        loading="lazy"
+                    >
 
-                <figcaption>
-                    Training and validation accuracy during the initial
-                    frozen-base training stage.
-                </figcaption>
-            </figure>
+                    <figcaption>
+                        Accuracy during frozen-base training.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img
+                        src="assets/initial_loss.png"
+                        alt="Initial training and validation loss graph"
+                        loading="lazy"
+                    >
+
+                    <figcaption>
+                        Loss during frozen-base training.
+                    </figcaption>
+                </figure>
+            </div>
         </section>
 
         <section>
             <p class="section-label">Fine-Tuning</p>
-            <h2>Fine-Tuning Accuracy</h2>
+            <h2>Fine-Tuning Performance</h2>
 
-            <figure>
-                <img
-                    src="../figures/fine_tuning_accuracy.png"
-                    alt="Fine-tuning training and validation accuracy graph"
-                    loading="lazy"
-                >
+            <div class="image-grid">
+                <figure>
+                    <img
+                        src="assets/fine_tuning_accuracy.png"
+                        alt="Fine-tuning accuracy graph"
+                        loading="lazy"
+                    >
 
-                <figcaption>
-                    Training and validation accuracy after unfreezing the final
-                    EfficientNetB0 layers.
-                </figcaption>
-            </figure>
+                    <figcaption>
+                        Accuracy after unfreezing the final EfficientNet layers.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img
+                        src="assets/fine_tuning_loss.png"
+                        alt="Fine-tuning loss graph"
+                        loading="lazy"
+                    >
+
+                    <figcaption>
+                        Loss during fine-tuning.
+                    </figcaption>
+                </figure>
+            </div>
         </section>
 
         <section>
             <p class="section-label">Evaluation</p>
             <h2>Confusion Matrix</h2>
 
-            <figure>
+            <figure class="large-figure">
                 <img
-                    src="../figures/confusion_matrix.png"
+                    src="assets/confusion_matrix.png"
                     alt="HAM10000 test-set confusion matrix"
                     loading="lazy"
                 >
 
                 <figcaption>
-                    Test-set predictions across the seven HAM10000 lesion
-                    categories.
+                    Test-set predictions across the seven lesion categories.
                 </figcaption>
             </figure>
         </section>
 
         <section>
-            <p class="section-label">Per-Class Evaluation</p>
+            <p class="section-label">Class Performance</p>
             <h2>Recall by Lesion Class</h2>
 
-            <figure>
+            <figure class="large-figure">
                 <img
-                    src="../figures/per_class_recall.png"
-                    alt="Recall by HAM10000 lesion class"
+                    src="assets/per_class_recall.png"
+                    alt="Recall for each HAM10000 lesion category"
                     loading="lazy"
                 >
 
                 <figcaption>
-                    Recall scores for each of the seven lesion categories.
+                    Recall reveals how performance differs between common
+                    and underrepresented lesion classes.
                 </figcaption>
             </figure>
         </section>
@@ -233,9 +266,9 @@
             <p class="section-label">Error Analysis</p>
             <h2>High-Confidence Incorrect Predictions</h2>
 
-            <figure>
+            <figure class="large-figure">
                 <img
-                    src="../figures/high_confidence_mistakes-2.png"
+                    src="assets/high_confidence_mistakes-2.png"
                     alt="Examples of high-confidence incorrect predictions"
                     loading="lazy"
                 >
@@ -247,9 +280,8 @@
             </figure>
 
             <p>
-                Examining confident mistakes can reveal class confusion,
-                dataset limitations, and areas where the model requires
-                additional improvement.
+                Reviewing confident mistakes helps identify class confusion,
+                dataset limitations, and areas for future improvement.
             </p>
         </section>
 
@@ -260,24 +292,27 @@
             <div class="method-grid">
                 <article class="method-card">
                     <h3>Data preparation</h3>
+
                     <p>
-                        Metadata validation, image-path mapping, resizing,
+                        Metadata validation, image mapping, resizing,
                         batching, and lesion-grouped splitting.
                     </p>
                 </article>
 
                 <article class="method-card">
                     <h3>Model training</h3>
+
                     <p>
-                        ImageNet transfer learning, class weights, data
+                        ImageNet transfer learning, class weighting,
                         augmentation, early stopping, and fine-tuning.
                     </p>
                 </article>
 
                 <article class="method-card">
                     <h3>Evaluation</h3>
+
                     <p>
-                        Accuracy, balanced accuracy, macro F1, ROC-AUC,
+                        Accuracy, balanced accuracy, F1, ROC-AUC,
                         confusion matrices, recall, and error analysis.
                     </p>
                 </article>
@@ -288,7 +323,7 @@
                 <span>TensorFlow</span>
                 <span>Keras</span>
                 <span>Transfer learning</span>
-                <span>Lesion-level splitting</span>
+                <span>Lesion-grouped split</span>
                 <span>Class weighting</span>
                 <span>Error analysis</span>
             </div>
@@ -300,10 +335,10 @@
 
             <ul>
                 <li>The HAM10000 dataset is highly imbalanced.</li>
-                <li>Performance varies substantially among lesion classes.</li>
-                <li>The model produced high-confidence incorrect predictions.</li>
+                <li>Performance varies among lesion categories.</li>
+                <li>The model can make high-confidence mistakes.</li>
                 <li>Results may not generalize beyond HAM10000.</li>
-                <li>The model does not use clinical history or patient context.</li>
+                <li>The model does not use patient history or clinical context.</li>
                 <li>The model has not undergone clinical validation.</li>
             </ul>
         </section>
