@@ -160,17 +160,36 @@
 
         <section>
             <p class="section-label">Training</p>
-            <h2>Training and Validation Accuracy</h2>
+            <h2>Initial Training Accuracy</h2>
 
             <figure>
                 <img
-                    src="assets/accuracy_graph.png"
-                    alt="Training and validation accuracy graph"
+                    src="../figures/initial_accuracy.png"
+                    alt="Initial training and validation accuracy graph"
                     loading="lazy"
                 >
 
                 <figcaption>
-                    Training and validation accuracy during model development.
+                    Training and validation accuracy during the initial
+                    frozen-base training stage.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <p class="section-label">Fine-Tuning</p>
+            <h2>Fine-Tuning Accuracy</h2>
+
+            <figure>
+                <img
+                    src="../figures/fine_tuning_accuracy.png"
+                    alt="Fine-tuning training and validation accuracy graph"
+                    loading="lazy"
+                >
+
+                <figcaption>
+                    Training and validation accuracy after unfreezing the final
+                    EfficientNetB0 layers.
                 </figcaption>
             </figure>
         </section>
@@ -181,7 +200,7 @@
 
             <figure>
                 <img
-                    src="assets/confusion_matrix.png"
+                    src="../figures/confusion_matrix.png"
                     alt="HAM10000 test-set confusion matrix"
                     loading="lazy"
                 >
@@ -194,12 +213,29 @@
         </section>
 
         <section>
+            <p class="section-label">Per-Class Evaluation</p>
+            <h2>Recall by Lesion Class</h2>
+
+            <figure>
+                <img
+                    src="../figures/per_class_recall.png"
+                    alt="Recall by HAM10000 lesion class"
+                    loading="lazy"
+                >
+
+                <figcaption>
+                    Recall scores for each of the seven lesion categories.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section>
             <p class="section-label">Error Analysis</p>
             <h2>High-Confidence Incorrect Predictions</h2>
 
             <figure>
                 <img
-                    src="assets/high_confidence_mistakes.jpeg"
+                    src="../figures/high_confidence_mistakes-2.png"
                     alt="Examples of high-confidence incorrect predictions"
                     loading="lazy"
                 >
