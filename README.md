@@ -1,4 +1,3 @@
-# HAM10000 Skin Lesion Image Classifier
 HAM10000 Skin Lesion Image Classifier
 
 An educational deep learning project that classifies dermoscopic skin lesion images from the HAM10000 dataset using EfficientNetB0 and TensorFlow.
@@ -43,7 +42,7 @@ mel — Melanoma
 nv — Melanocytic nevi
 vasc — Vascular lesions
 
-Dataset Split (split by lesion ID to prevent the same lesion from appearing in more than one split):
+Dataset Split (split by lesion ID, using a 70/15/15 lesion-grouped split, so the same lesion never appears in more than one split):
 
 Training Images: 7,002
 Validation Images: 1,519
@@ -57,18 +56,22 @@ TensorFlow / Keras
 Transfer learning (frozen-base training, then fine-tuning)
 Data augmentation
 Class weighting
-Evaluation Results (Final Model)
+Evaluation Results (Final Model, After Fine-Tuning)
 Metric	Value
 Test Accuracy	72.49%
 Balanced Accuracy	66.76%
+Macro Precision	50.06%
+Macro Recall	66.76%
 Macro F1 Score	53.52%
+Weighted F1 Score	74.41%
 Macro ROC-AUC	92.39%
 
-These numbers come from the fine-tuned model, after unfreezing and retraining the final EfficientNet layers. The gap between macro F1 (53.52%) and balanced accuracy/recall (66.76%) reflects imbalanced precision across classes — the model still favors majority classes like nv somewhat more than minority classes like df and vasc, even after class weighting. Macro ROC-AUC of 92.39% shows the model separates classes well in terms of ranking confidence, even where hard threshold decisions are still imperfect.
+Reading these numbers: Balanced accuracy (66.76%) and macro F1 (53.52%) diverge because macro precision (50.06%) is noticeably lower than macro recall — the model still over-predicts majority classes like nv somewhat, even with class weighting applied, which drags precision down for minority classes. The high macro ROC-AUC (92.39%) shows the model separates classes well by confidence ranking, even where the final hard-threshold decision is sometimes wrong. Out of 1,494 test images, the model made 411 errors.
 
-For context: this task is genuinely difficult — visually similar lesion types, an imbalanced 7-class label set, and images from multiple imaging sources. The project emphasizes understanding the complete machine learning workflow and being honest about the results, rather than producing a clinically usable model.
+This task is genuinely difficult: 7 visually similar classes, a heavily imbalanced dataset, and images from multiple clinical sources. The project prioritizes an honest, fully-documented ML workflow over inflating results — see MODEL_CARD.md for the full breakdown and discussion of limitations.
 
 Training
+
 Initial Training (Frozen Base)
 
 Show Image Show Image
@@ -89,24 +92,33 @@ High-Confidence Incorrect Predictions
 
 Show Image
 
-Reviewing confident mistakes helps identify class confusion, dataset limitations, and areas for future improvement.
+Reviewing confident mistakes helps identify class confusion, dataset limitations, and areas for future improvement. The most common confusions are between visually similar classes such as nv and mel, and nv and vasc.
 
 Repository Structure
-HAM10000/
+HAM10000-Skin-Lesion-Classifier/
 │
-├── docs/
-├── figures/
+├── docs/                    # GitHub Pages live results site
+│   └── assets/
+├── figures/                 # Charts referenced in this README
+│   ├── confusion_matrix.png
+│   ├── fine_tuning_accuracy.png
+│   ├── fine_tuning_loss.png
+│   ├── high_confidence_mistakes-2.png
+│   ├── initial_accuracy.png
+│   ├── initial_loss.png
+│   └── per_class_recall.png
 ├── notebook/
-│   └── HAM10000_Skin_Lesion_Classifier.ipynb
+│   └── HAM10000_Skin_Lesion_Classifier_jpynb.ipynb
 ├── results/
 │   ├── HAM10000_results.json
 │   ├── HAM10000_mistakes.csv
+│   ├── HAM10000_error_pairs.csv
 │   └── HAM10000_test_predictions.csv
 │
 ├── MODEL_CARD.md
 ├── README.md
 └── requirements.txt
-#Technologies Used
+Technologies Used
 Python
 TensorFlow
 Keras
@@ -130,13 +142,16 @@ Model Evaluation
 Error Analysis
 Confusion Matrix Interpretation
 Machine Learning Documentation
-#Project Limitations
+Project Limitations
 The HAM10000 dataset is highly imbalanced.
 Performance varies significantly across lesion classes.
 The model produces some high-confidence incorrect predictions.
 Results may not generalize outside the HAM10000 dataset.
 The model has not been clinically validated.
 Predictions are based only on images and do not include patient history or clinical information.
+
+Full discussion in MODEL_CARD.md.
+
 Future Improvements
 Grad-CAM visual explanations
 Further handling of class imbalance (e.g., focal loss)
@@ -145,15 +160,19 @@ Additional CNN architectures (ResNet50, MobileNetV2) for comparison
 Precision-recall curves per class
 Interactive web application / hosted demo
 Model comparison experiments
-#Author:
+Author
+
 Shashank Padala
+
 High school student interested in:
+
 Artificial Intelligence
 Computer Vision
+Biomedical Engineering
 Medicine
 Machine Learning
 Software Engineering
-#Educational Disclaimer
+Educational Disclaimer
 
 This repository is an educational machine learning project created to demonstrate deep learning techniques using publicly available data.
 
@@ -165,4 +184,4 @@ Patient screening
 Treatment recommendations
 Replacing a licensed healthcare professional
 
-Always make sure to consult a qualified medical professional for medical advice.
+Always consult a qualified medical professional for medical advice.
